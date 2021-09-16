@@ -1,0 +1,2 @@
+# neumacs
+My emacs config
