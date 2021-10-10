@@ -1,0 +1,88 @@
+#+TITLE My Emacs Config
+#+AUTHOR Dustin
+
+* Use Package
+
+#+BEGIN_SRC emacs-lisp
+(package-initialize)
+(require 'package)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.org/packages/") t)
+#+END_SRC
+
+* UI configuration
+  
+** Enabling echo bell
+  
+#+BEGIN_SRC emacs-lisp
+(when (load "~/.config/emacs/echo-bell.el")
+  (echo-bell-mode))
+#+END_SRC
+
+** Disabling Emacs UI
+
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq make-backup-files nil)
+#+END_SRC
+
+** Theming
+   
+#+BEGIN_SRC emacs-lisp
+(use-package sexy-monochrome-theme
+  :ensure t
+  :config
+  (load-theme 'sexy-monochrome t))
+#+END_SRC
+
+* Org mode
+
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/org")
+#+END_SRC
+
+* Lisp stuff
+  
+#+BEGIN_SRC
+
+#+END_SRC
+
+* Magit / Git
+
+#+BEGIN_SRC
+(use-package magit
+  :ensure t
+  :config)
+#+END_SRC
+
+* Evil mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+  
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+#+END_SRC
+* Languages
+
+** Lua
+   
+#+BEGIN_SRC emacs-lisp
+(use-package lua-mode
+  :ensure t
+  :config
+  (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+  (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+  (add-to-list 'interpreter-mode-alist '("lua" . lua-mode)))
+#+END_SRC
