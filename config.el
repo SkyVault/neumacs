@@ -59,3 +59,5 @@
 (use-package magit
   :ensure t
   :config)
+
+;; Org mode
