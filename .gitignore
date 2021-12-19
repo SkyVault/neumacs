@@ -3,3 +3,6 @@ elpa/
 transient/
 eshell/
 session.*
+.cache/
+.local/
+history
