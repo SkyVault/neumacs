@@ -1,0 +1,1 @@
+("~/Projects/NimEcs/" "~/.emacs.d/" "~/Projects/NimEcs/src/" "~/Projects/BeyondAgeRpg/")

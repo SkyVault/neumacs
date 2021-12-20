@@ -43,6 +43,18 @@
   :config
   (which-key-mode))
 
+;;; Projectile
+
+(use-package ag
+  :ensure t)
+
+(use-package projectile
+  :after ag
+  :ensure t
+  :config
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
 ;;; Treemacs
 
 (use-package treemacs
@@ -242,3 +254,13 @@
 
 (use-package gdscript-mode
   :ensure t)
+
+;; Nim
+
+(use-package nim-mode
+  :ensure t
+  :config
+  (defun init-nim-mode ()
+    (auto-fill-mode 0)
+    (electric-indent-local-mode 0))
+  (add-hook 'nim-mode-hook 'init-nim-mode))
