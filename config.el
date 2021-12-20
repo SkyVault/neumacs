@@ -80,14 +80,17 @@
 ;;; Projectile
 
 (use-package ag
-  :ensure t)
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x /") 'ag))
 
 (use-package projectile
   :after ag
   :ensure t
   :config
   (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-x p") 'projectile-find-file))
 
 ;;; Treemacs
 
@@ -213,6 +216,7 @@
   ;; (setq vertico-cycle t)
   )
 
+;; This controls how vertico orders the lines
 (use-package orderless
   :init
   ;; Configure a custom style dispatcher (see the Consult wiki)
@@ -221,6 +225,24 @@
   (setq completion-styles '(orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
+
+;; Enable richer annotations using the Marginalia package
+(use-package marginalia
+  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
+
+(use-package consult
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x b") 'consult-buffer))
 
 (use-package emacs
   :init
