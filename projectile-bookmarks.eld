@@ -1,1 +1,1 @@
-("~/Projects/NimEcs/" "~/.emacs.d/" "~/Projects/NimEcs/src/" "~/Projects/BeyondAgeRpg/")
+("~/.emacs.d/" "~/Projects/NimEcs/" "~/Projects/NimEcs/src/" "~/Projects/BeyondAgeRpg/")

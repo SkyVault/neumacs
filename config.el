@@ -21,7 +21,7 @@
 ;; User interface
 
 (setq inhibit-startup-message t
-      initial-scratch-message "Welcome Dustin!")
+      initial-scratch-message "Hello, Dustin.")
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -34,6 +34,39 @@
   :config
   (rainbow-mode))
 
+;;; Fonts
+;; dnf install fira-code-fonts
+
+;; Set default font
+
+(set-face-attribute
+    'default nil
+    :family "Fira Code Retina"
+    :height 110
+    :weight 'normal
+    :width 'normal)
+
+(let ((file (expand-file-name "ligature.el" user-emacs-directory)))
+  (when (file-exists-p file)
+    (load file)
+    (ligature-set-ligatures 't '("www"))
+    (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+    (ligature-set-ligatures 'prog-mode
+			    '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+			    ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+			    "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+			    "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+			    "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+			    "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+			    "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+			    "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+			    ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+			    "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+			    "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+			    "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+			    "\\\\" "://"))
+    (global-ligature-mode t)))
+
 ;; Editor behaviour
 
 (setq make-backup-files nil)
@@ -41,6 +74,7 @@
 (use-package which-key
   :ensure t
   :config
+  (setq which-key-idle-delay 0.5)
   (which-key-mode))
 
 ;;; Projectile
