@@ -306,6 +306,17 @@
 
 ;; Org mode
 
+
+
+;; Company mode
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1)
+  (setq company-selection-wrap-around t))
 ;; Godot
 
 (use-package gdscript-mode
@@ -320,3 +331,22 @@
     (auto-fill-mode 0)
     (electric-indent-local-mode 0))
   (add-hook 'nim-mode-hook 'init-nim-mode))
+
+;; LSP mode
+
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t)
+  (add-hook 'gdscript-mode #'lsp))
+
+(use-package lsp-ui
+  :ensure t)
+
+(use-package lsp-treemacs
+  :ensure t
+  :config
+  (lsp-treemacs-sync-mode))
