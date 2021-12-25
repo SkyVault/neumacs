@@ -70,6 +70,7 @@
 ;; Editor behaviour
 
 (setq make-backup-files nil)
+(setq visible-bell 1)
 
 (use-package which-key
   :ensure t
@@ -317,6 +318,14 @@
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1)
   (setq company-selection-wrap-around t))
+
+;; Rust
+
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq rust-format-on-save t))
+
 ;; Godot
 
 (use-package gdscript-mode
