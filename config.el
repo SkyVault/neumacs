@@ -1,4 +1,7 @@
-;; Package setup
+;;; package --- Dustin's Emacs Config
+;;; Commentary:
+
+;;; Code:
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -77,6 +80,13 @@
   :config
   (setq which-key-idle-delay 0.5)
   (which-key-mode))
+
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;;; Projectile
 
@@ -338,8 +348,26 @@
   :config
   (defun init-nim-mode ()
     (auto-fill-mode 0)
-    (electric-indent-local-mode 0))
+    (electric-indent-local-mode 0)
+
+    (setq nimsuggest-path "/home/dustin/Repos/nim-1.6.0/bin/nimsuggest")
+
+    ;;(nimsuggest-mode)
+    ;;(flycheck-mode 1)
+
+    (setq-default tab-width 2)
+    (setq-default indent-tabs-mode nil)
+    (defvaralias 'c-basic-offset 'tab-width)
+    (defvaralias 'cperl-indent-level 'tab-width)
+    )
+
   (add-hook 'nim-mode-hook 'init-nim-mode))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (add-hook 'nim-mode-hook 'highlight-indent-guides-mode))
 
 ;; LSP mode
 
@@ -359,3 +387,14 @@
   :ensure t
   :config
   (lsp-treemacs-sync-mode))
+
+;; Fly check
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode))
+
+(provide 'config)
+;;; config.el ends here
+
