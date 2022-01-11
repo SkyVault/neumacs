@@ -1,4 +1,4 @@
-;;; package --- Dustin's Emacs Config
+;; package --- Dustin's Emacs Config
 ;;; Commentary:
 
 ;;; Code:
@@ -70,10 +70,17 @@
 			    "\\\\" "://"))
     (global-ligature-mode t)))
 
+(use-package highlight-numbers
+  :ensure t
+  :config
+  (highlight-numbers-mode))
+
 ;; Editor behaviour
 
 (setq make-backup-files nil)
 (setq visible-bell 1)
+
+(setq browse-url-browser-function 'eww-browse-url)
 
 (use-package which-key
   :ensure t
@@ -87,6 +94,12 @@
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+(defun open-config-file ()
+  (interactive)
+  (find-file (expand-file-name "config.el" user-emacs-directory)))
+
+(global-set-key (kbd "C-c C-c C-e") 'open-config-file)
 
 ;;; Projectile
 
@@ -352,7 +365,7 @@
 
     (setq nimsuggest-path "/home/dustin/Repos/nim-1.6.0/bin/nimsuggest")
 
-    ;;(nimsuggest-mode)
+    (nimsuggest-mode)
     ;;(flycheck-mode 1)
 
     (setq-default tab-width 2)
@@ -388,13 +401,32 @@
   :config
   (lsp-treemacs-sync-mode))
 
+;; glsl
+(use-package glsl-mode
+  :ensure t
+  :config)
+
 ;; Fly check
 
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode))
+;; (use-package flycheck
+;;   :ensure t
+;;   :init
+;;   (global-flycheck-mode))
 
 (provide 'config)
+
+;; Elfeed (RSS)
+
+(use-package elfeed
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c e") 'elfeed)
+  (setq elfeed-feeds
+	'("https://lukesmith.xyz/rss.xml"
+	  "https://notrelated.libsyn.com/rss"
+	  "https://hnrss.org/frontpage"
+	  "https://christine.website/blog.rss"))
+  (elfeed-update))
+
 ;;; config.el ends here
 
