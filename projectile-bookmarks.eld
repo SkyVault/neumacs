@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/Projects/BeyondAgeEngine/" "~/org/" "~/Work/wiki.wiki/" "~/Projects/BeyondAgeRpg/" "~/Projects/harp-lang/" "~/Projects/NimEcs/" "~/Projects/NimEcs/src/")
+("~/.emacs.d/" "~/org/" "~/Projects/BeyondAgeEngine/" "~/Work/wiki.wiki/" "~/Projects/BeyondAgeRpg/" "~/Projects/harp-lang/" "~/Projects/NimEcs/" "~/Projects/NimEcs/src/")

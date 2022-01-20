@@ -6,7 +6,7 @@
 
 (deftheme some-nice-colors "DOCSTRING for some-nice-colors")
   (custom-theme-set-faces 'some-nice-colors
-   '(default ((t (:foreground "#d2fff5" :background "#000000" ))))
+   '(default ((t (:foreground "#c4b3ad" :background "#000000" ))))
    '(cursor ((t (:background "#fdf4c1" ))))
    '(fringe ((t (:background "#282828" ))))
    '(mode-line ((t (:foreground "#bccc9a" :background "#111111" ))))

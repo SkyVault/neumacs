@@ -425,7 +425,8 @@
 	'("https://lukesmith.xyz/rss.xml"
 	  "https://notrelated.libsyn.com/rss"
 	  "https://hnrss.org/frontpage"
-	  "https://christine.website/blog.rss"))
+	  "https://christine.website/blog.rss"
+    "https://www.reuters.com/news/archive/domesticNews"))
   (elfeed-update))
 
 ;;; config.el ends here
