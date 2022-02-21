@@ -330,7 +330,16 @@
 
 ;; Org mode
 
+(defun open-work-notes ()
+  (interactive)
+  (message "new note")
+;;  "%Y-%m-%dT%H:%M:%S"
+  (let ((today (format-time-string "%b %d %Y"))
+	(file-name (-concat )))
+    (message today)))
 
+
+(global-set-key (kbd "C-c o w") 'open-work-notes)
 
 ;; Company mode
 
@@ -426,7 +435,8 @@
 	  "https://notrelated.libsyn.com/rss"
 	  "https://hnrss.org/frontpage"
 	  "https://christine.website/blog.rss"
-    "https://www.reuters.com/news/archive/domesticNews"))
+	  "https://www.reuters.com/news/archive/domesticNews"
+	  "https://fabiensanglard.net/rss.xml"))
   (elfeed-update))
 
 ;;; config.el ends here
