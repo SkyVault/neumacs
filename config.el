@@ -329,6 +329,129 @@
   :config)
 
 ;; Org mode
+(setq org-todo-keywords
+'((sequence "IDEA(i)" "TODO(t)" "STARTED(s)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)")
+  (sequence "|" "CANCELED(c)" "DELEGATED(l)" "SOMEDAY(f)")))
+
+(setq org-todo-keyword-faces
+  '(("IDEA" . (:foreground "GoldenRod" :weight bold))
+    ("NEXT" . (:foreground "IndianRed1" :weight bold))
+    ("STARTED" . (:foreground "OrangeRed" :weight bold))
+    ("WAITING" . (:foreground "coral" :weight bold))
+    ("CANCELED" . (:foreground "LimeGreen" :weight bold))
+    ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
+    ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))))
+
+(setq org-tag-persistent-alist
+  '((:startgroup . nil)
+    ("HOME" . ?h)
+    ("RESEARCH" . ?r)
+    ("TEACHING" . ?t)
+    (:endgroup . nil)
+    (:startgroup . nil)
+    ("OS" . ?o)
+    ("DEV" . ?d)
+    ("WWW" . ?w)
+    (:endgroup . nil)
+    (:startgroup . nil)
+    ("EASY" . ?e)
+    ("MEDIUM" . ?m)
+    ("HARD" . ?a)
+    (:endgroup . nil)
+    ("UCANCODE" . ?c)
+    ("URGENT" . ?u)
+    ("KEY" . ?k)
+    ("BONUS" . ?b)
+    ("noexport" . ?x)))
+
+(setq org-tag-faces
+  '(("HOME" . (:foreground "GoldenRod" :weight bold))
+    ("RESEARCH" . (:foreground "GoldenRod" :weight bold))
+    ("TEACHING" . (:foreground "GoldenRod" :weight bold))
+    ("OS" . (:foreground "IndianRed1" :weight bold))
+    ("DEV" . (:foreground "IndianRed1" :weight bold))
+    ("WWW" . (:foreground "IndianRed1" :weight bold))
+    ("URGENT" . (:foreground "Red" :weight bold))
+    ("KEY" . (:foreground "Red" :weight bold))
+    ("EASY" . (:foreground "OrangeRed" :weight bold))
+    ("MEDIUM" . (:foreground "OrangeRed" :weight bold))
+    ("HARD" . (:foreground "OrangeRed" :weight bold))
+    ("BONUS" . (:foreground "GoldenRod" :weight bold))
+    ("UCANCODE" . (:foreground "GoldenRod" :weight bold))
+    ("noexport" . (:foreground "LimeGreen" :weight bold))))
+
+(setq org-html-coding-system 'utf-8-unix)
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-html-validation-link nil)
+
+(setq org-log-done t)
+
+(use-package org-bullets
+  :ensure t)
+
+(defun my/buffer-face-mode-variable ()
+  "Set font to a variable width (proportional) fonts in current buffer"
+  (interactive)
+  (setq buffer-face-mode-face '(:family "Roboto Slab"
+                                :height 150
+                                :width normal))
+  (buffer-face-mode))
+
+(defun my/set-general-faces-org ()
+  (org-indent-mode 1)
+  (my/buffer-face-mode-variable)
+  (setq line-spacing 0.1
+        org-pretty-entities t
+        org-startup-indented t
+        org-adapt-indentation nil)
+  (variable-pitch-mode +1)
+  (mapc
+   (lambda (face) ;; Other fonts that require it are set to fixed-pitch.
+     (set-face-attribute face nil :inherit 'fixed-pitch))
+   (list 'org-block
+         'org-table
+         'org-verbatim
+         'org-block-begin-line
+         'org-block-end-line
+         'org-meta-line
+         'org-date
+         'org-drawer
+         'org-property-value
+         'org-special-keyword
+         'org-document-info-keyword))
+  (mapc ;; This sets the fonts to a smaller size
+   (lambda (face)
+     (set-face-attribute face nil :height 0.8))
+   (list 'org-document-info-keyword
+         'org-block-begin-line
+         'org-block-end-line
+         'org-meta-line
+         'org-drawer
+         'org-property-value
+         )))
+
+(defun my/set-specific-faces-org ()
+  (set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-level-1 nil :height 1.35 :foreground "#bccc9a" :box nil :underline nil)
+  (set-face-attribute 'org-level-2 nil :height 1.25 :foreground "#b97a95" :slant 'italic)
+  (set-face-attribute 'org-level-3 nil :height 1.1 :foreground "#F6AE99" :slant 'italic)
+  (set-face-attribute 'org-level-4 nil :height 1.05 :foreground "#A2CDCD")
+  (set-face-attribute 'org-level-5 nil :foreground "#b97a95")
+  (set-face-attribute 'org-date nil :foreground "#ECBE7B" :height 0.8)
+  (set-face-attribute 'org-document-title nil :foreground "#b97a95" :height 1.75 :underline t)
+  (set-face-attribute 'org-ellipsis nil :foreground "#4f747a" :underline nil)
+  (set-face-attribute 'variable-pitch nil :family "Roboto Slab" :height 1.2))
+
+(defun my/style-org ()
+  (interactive)
+  (my/set-general-faces-org)
+  (my/set-specific-faces-org)
+  ;; (my/set-keyword-faces-org)
+  )
+
+(add-hook 'org-mode-hook 'my/style-org)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (defun open-work-notes ()
   (interactive)
@@ -337,7 +460,6 @@
   (let ((today (format-time-string "%b %d %Y"))
 	(file-name (-concat )))
     (message today)))
-
 
 (global-set-key (kbd "C-c o w") 'open-work-notes)
 

@@ -1,0 +1,16 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".npr.org"
+  [url-cookie "ak_bmsc" "16237B7EBC4A0FECD06C9C15958A6F18~000000000000000000000000000000~YAAQ1yzorMWLkEd+AQAAh1DqSQ41wuS7HTllGWBSKoNhBsQUM1t3Btbgs5RrErYH6h64XBTAx6UJIx0VtgSXDPP6JxxCbWE5PMGZHY1URr7v2Rw1XZOiw3KOa4esDkCPGx3Q9YaGdWRoYCv6VGdb41SMLbysyu3Vgi4rg1LlDH1ZDhw3vkcx/JNLc3fY8leD+uP/9TivBHvWjQRo87SCVpUJYc5bt0Pj9WsbNuDkw/2iVo++wzIBZxz7rrhGUwUiMzt+ZOZZUAZpDfE2l4v/hLNOlvUwJRikjNEa6cNAGTwj6Z2J+3jeTrGCMqySZUZV2ZYAN8lF63xjL8nbLu9mr6kcb4WdELVc870dEYAMArklNYbLFhwXvEHD" "Tue Jan 11 18:13:21 2022 GMT" "/" ".npr.org" nil]))
+)
+(setq url-cookie-secure-storage
+ '(("blog.robsayers.com"
+  [url-cookie "u" "MTY0MTkxOTc2MHx6MTdOeUNsb1BsamxfbG04UTVaNmt5ZWkwOXlPWDc3LS1VTlF5SFdmMDZoSE1wVmx8DuW_6boTx6q5o46iCakeuhx_P6o5-BSEZ0Zw59w1sN0=" "Sun Jul 10 16:49:20 2022 GMT" "/" "blog.robsayers.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:
