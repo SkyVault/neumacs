@@ -30,6 +30,8 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(highlight-parentheses-mode 1)
+
 (load-theme 'some-nice-colors t)
 
 (use-package rainbow-mode
