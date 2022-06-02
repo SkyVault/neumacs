@@ -469,7 +469,32 @@ I should work on configuring this more, but for now I just use the
 basic config
 
 #+begin_src emacs-lisp
-    (use-package magit
-      :ensure t
-      :config)
+  (use-package magit
+    :ensure t
+    :config)
+#+end_src
+
+* Elfeed
+
+I want to extend this to include all of my favorite youtube channels,
+I don't want to be glued to scrolling through youtube, so I am hoping this
+helps with that.
+
+#+begin_src emacs-lisp
+  (use-package elfeed
+    :ensure t
+    :config
+    (global-set-key (kbd "C-c e") 'elfeed)
+    (setq elfeed-feeds
+	  '("https://lukesmith.xyz/rss.xml"
+	    "https://notrelated.libsyn.com/rss"
+	    "https://hnrss.org/frontpage"
+	    "https://christine.website/blog.rss"
+	    "https://www.reuters.com/news/archive/domesticNews"
+	    "https://fabiensanglard.net/rss.xml"))
+    (elfeed-update)
+    ;; Change max image size
+    (require 'shr)
+    (setq shr-max-image-proportion 0.5)
+    )
 #+end_src
