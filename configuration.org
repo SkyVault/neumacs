@@ -236,7 +236,6 @@ Vertico is a nice utility that adds vertical menus like helm, but is very light
     )
 #+end_src
 
-
 ** Search
 
 #+begin_src emacs-lisp
@@ -272,6 +271,12 @@ Vertico is a nice utility that adds vertical menus like helm, but is very light
     (find-file (expand-file-name "configuration.org" user-emacs-directory)))
 
   (global-set-key (kbd "C-c C-c C-e") 'open-config-file)
+
+  ;; Navigate window backwards
+  (global-set-key (kbd "C-x O")
+                  (lambda ()
+                    (interactive)
+                    (other-window -1)))
 #+end_src
 
 ** Themes
