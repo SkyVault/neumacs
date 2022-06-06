@@ -5640,6 +5640,35 @@ it is disabled.
 
 
 )
+(let ((load-true-file-name "/home/dustin/.emacs.d/elpa/lua-mode-20210809.1320/lua-mode-autoloads.el")(load-file-name "/home/dustin/.emacs.d/elpa/lua-mode-20210809.1320/lua-mode-autoloads.el"))
+
+(add-to-list 'load-path (directory-file-name
+                         (or (file-name-directory "/home/dustin/.emacs.d/elpa/lua-mode-20210809.1320/lua-mode-autoloads.el") (car load-path))))
+
+
+
+(autoload 'lua-mode "lua-mode" "\
+Major mode for editing Lua code.
+
+\(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-mode))
+
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+
+(defalias 'run-lua #'lua-start-process)
+
+(autoload 'lua-start-process "lua-mode" "\
+Start a Lua process named NAME, running PROGRAM.
+PROGRAM defaults to NAME, which defaults to `lua-default-application'.
+When called interactively, switch to the process buffer.
+
+\(fn &optional NAME PROGRAM STARTFILE &rest SWITCHES)" t nil)
+
+(register-definition-prefixes "lua-mode" '("lua-"))
+
+
+)
 (let ((load-true-file-name "/home/dustin/.emacs.d/elpa/highlight-numbers-20181013.1744/highlight-numbers-autoloads.el")(load-file-name "/home/dustin/.emacs.d/elpa/highlight-numbers-20181013.1744/highlight-numbers-autoloads.el"))
 
 (add-to-list 'load-path (directory-file-name
@@ -5877,7 +5906,7 @@ Kill all `ag-mode' buffers other than the current buffer." t nil)
 )
 (setq package-activated-list
       (append
-       '(compat with-editor vertico bind-key use-package projectile dash s avy ace-window pfuture lv hydra ht posframe cfrs treemacs treemacs-projectile persp-mode treemacs-persp transient git-commit magit-section magit treemacs-magit treemacs-icons-dired rainbow-mode parent-mode org-bullets highlight-numbers elfeed ag)
+       '(compat with-editor vertico bind-key use-package projectile dash s avy ace-window pfuture lv hydra ht posframe cfrs treemacs treemacs-projectile persp-mode treemacs-persp transient git-commit magit-section magit treemacs-magit treemacs-icons-dired rainbow-mode parent-mode org-bullets lua-mode highlight-numbers elfeed ag)
        package-activated-list))
 (progn
   (require 'info)

@@ -236,6 +236,23 @@ Vertico is a nice utility that adds vertical menus like helm, but is very light
     )
 #+end_src
 
+
+** Search
+
+#+begin_src emacs-lisp
+;; Prevents issue where you have to press backspace twice when
+;; trying to remove the first character that fails a search
+(define-key isearch-mode-map [remap isearch-delete-char] 'isearch-del-char)
+
+(defadvice isearch-search (after isearch-no-fail activate)
+  (unless isearch-success
+    (ad-disable-advice 'isearch-search 'after 'isearch-no-fail)
+    (ad-activate 'isearch-search)
+    (isearch-repeat (if isearch-forward 'forward))
+    (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
+    (ad-activate 'isearch-search)))
+#+end_src
+
 ** Splashscreen
 
 #+begin_src emacs-lisp
@@ -497,4 +514,17 @@ helps with that.
     (require 'shr)
     (setq shr-max-image-proportion 0.5)
     )
+#+end_src
+
+* Language Specific
+
+** Lua
+
+#+begin_src emacs-lisp
+  (use-package lua-mode
+    :ensure t
+    :config
+    (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+    (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+    (add-to-list 'interpreter-mode-alist '("lua" . lua-mode)))
 #+end_src
