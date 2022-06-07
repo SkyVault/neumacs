@@ -172,6 +172,18 @@
   ;; (setq vertico-cycle t)
   )
 
+;; Prevents issue where you have to press backspace twice when
+;; trying to remove the first character that fails a search
+(define-key isearch-mode-map [remap isearch-delete-char] 'isearch-del-char)
+
+(defadvice isearch-search (after isearch-no-fail activate)
+  (unless isearch-success
+    (ad-disable-advice 'isearch-search 'after 'isearch-no-fail)
+    (ad-activate 'isearch-search)
+    (isearch-repeat (if isearch-forward 'forward))
+    (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
+    (ad-activate 'isearch-search)))
+
 (setq inhibit-startup-message t
       initial-scratch-message "Hello, Dustin.")
 
@@ -184,6 +196,12 @@
   (find-file (expand-file-name "configuration.org" user-emacs-directory)))
 
 (global-set-key (kbd "C-c C-c C-e") 'open-config-file)
+
+;; Navigate window backwards
+(global-set-key (kbd "C-x O")
+                (lambda ()
+                  (interactive)
+                  (other-window -1)))
 
 (load-theme 'some-nice-colors t)
 
@@ -224,6 +242,17 @@
   :ensure t
   :config
   (highlight-numbers-mode))
+
+;;    (use-package shell-pop
+  ;;      :ensure t
+  ;;      :config
+  ;;      (require 'shell-pop)
+  ;;      (global-set-key (kbd "C-c SPC") 'shell-pop)
+  ;;      (shell-pop-set-internal-mode-shell "eshell"))
+(add-to-list 'load-path (expand-file-name "shell-pop.el" user-emacs-directory))
+(require 'shell-pop)
+(shell-pop-set-internal-mode-shell "eshell")
+(global-set-key (kbd "C-c SPC") 'shell-pop)
 
 (setq org-todo-keywords
 '((sequence "IDEA(i)" "TODO(t)" "STARTED(s)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)")

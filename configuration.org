@@ -347,6 +347,21 @@ Highlighting numbers makes them more visible in code
   (highlight-numbers-mode))
 #+end_src
 
+* Shell Improvements
+
+#+begin_src emacs-lisp
+    ;;    (use-package shell-pop
+    ;;      :ensure t
+    ;;      :config
+    ;;      (require 'shell-pop)
+    ;;      (global-set-key (kbd "C-c SPC") 'shell-pop)
+    ;;      (shell-pop-set-internal-mode-shell "eshell"))
+  (add-to-list 'load-path (expand-file-name "shell-pop.el" user-emacs-directory))
+  (require 'shell-pop)
+  (shell-pop-set-internal-mode-shell "eshell")
+  (global-set-key (kbd "C-c SPC") 'shell-pop)
+#+end_src
+
 * Org mode
 
 Extending org TODO's with new keywords and styling them

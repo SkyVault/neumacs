@@ -5566,6 +5566,29 @@ This function is meant to be used as a single-use toggle added to
 
 
 )
+(let ((load-true-file-name "/home/dustin/.emacs.d/elpa/shell-pop-20200315.1139/shell-pop-autoloads.el")(load-file-name "/home/dustin/.emacs.d/elpa/shell-pop-20200315.1139/shell-pop-autoloads.el"))
+
+(add-to-list 'load-path (directory-file-name
+                         (or (file-name-directory "/home/dustin/.emacs.d/elpa/shell-pop-20200315.1139/shell-pop-autoloads.el") (car load-path))))
+
+
+
+(defvar shell-pop-universal-key nil "\
+Key binding used to pop in and out of the shell.
+
+The input format is the same as that of `kbd'.")
+
+(custom-autoload 'shell-pop-universal-key "shell-pop" nil)
+
+(autoload 'shell-pop "shell-pop" "\
+
+
+\(fn ARG)" t nil)
+
+(register-definition-prefixes "shell-pop" '("shell-pop-"))
+
+
+)
 (let ((load-true-file-name "/home/dustin/.emacs.d/elpa/rainbow-mode-1.0.6/rainbow-mode-autoloads.el")(load-file-name "/home/dustin/.emacs.d/elpa/rainbow-mode-1.0.6/rainbow-mode-autoloads.el"))
 
 (add-to-list 'load-path (directory-file-name
@@ -5904,9 +5927,10 @@ Kill all `ag-mode' buffers other than the current buffer." t nil)
 
 
 )
+(defvar package-activated-list)
 (setq package-activated-list
       (append
-       '(compat with-editor vertico bind-key use-package projectile dash s avy ace-window pfuture lv hydra ht posframe cfrs treemacs treemacs-projectile persp-mode treemacs-persp transient git-commit magit-section magit treemacs-magit treemacs-icons-dired rainbow-mode parent-mode org-bullets lua-mode highlight-numbers elfeed ag)
+       '(compat with-editor vertico bind-key use-package projectile dash s avy ace-window pfuture lv hydra ht posframe cfrs treemacs treemacs-projectile persp-mode treemacs-persp transient git-commit magit-section magit treemacs-magit treemacs-icons-dired shell-pop rainbow-mode parent-mode org-bullets lua-mode highlight-numbers elfeed ag)
        package-activated-list))
 (progn
   (require 'info)
@@ -5919,4 +5943,5 @@ Kill all `ag-mode' buffers other than the current buffer." t nil)
 ;; Local Variables:
 ;; version-control: never
 ;; no-update-autoloads: t
+;; byte-compile-warnings: (not make-local)
 ;; End:
