@@ -24,7 +24,6 @@
 #+END_SRC
 
 * Basic emacs theming and behavior
-
 ** Disabling backups
 
 This is really not needed, emacs doesn't crash often and nearly
@@ -87,6 +86,22 @@ Global search
     :ensure t
     :config
     (global-set-key (kbd "C-x /") 'ag))
+#+end_src
+
+Enabling recent files
+
+#+begin_src emacs-lisp
+  (recentf-mode t)
+;; call recentf-open-files
+#+end_src
+
+Good smooth scrolling
+
+#+begin_src emacs-lisp
+  (use-package good-scroll
+    :ensure t
+    :init (good-scroll-mode 1)
+    :config)
 #+end_src
 
 *** Project management (projectile and treemacs)
@@ -236,6 +251,36 @@ Vertico is a nice utility that adds vertical menus like helm, but is very light
     )
 #+end_src
 
+** Auto Complete
+
+#+begin_src emacs-lisp
+   (use-package auto-complete
+     :ensure t
+     :init (auto-complete-mode)
+     :config
+     (ac-set-trigger-key "TAB")
+     )
+#+end_src
+
+** Window management
+
+#+begin_src emacs-lisp
+  (require 'windmove)
+  (global-set-key (kbd "C-c h")  'windmove-left)
+  (global-set-key (kbd "C-c l") 'windmove-right)
+  (global-set-key (kbd "C-c k")    'windmove-up)
+  (global-set-key (kbd "C-c j")  'windmove-down)
+#+end_src
+
+** FX
+
+#+begin_src emacs-lisp
+  (use-package beacon
+    :ensure t
+    :config
+    (beacon-mode 1))
+#+end_src
+
 ** Search
 
 #+begin_src emacs-lisp
@@ -287,13 +332,39 @@ Load my custom colorscheme
 (load-theme 'some-nice-colors t)
 #+end_src
 
-Enable rainbow parenthesis mode
+Enable rainwbow mode
 
 #+begin_src emacs-lisp
-(use-package rainbow-mode
-  :ensure t
-  :config
-  (rainbow-mode))
+  (use-package rainbow-mode
+    :ensure t
+    :init (rainbow-mode 1)
+    :config)
+#+end_src
+
+** Modeline
+
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1)
+    :config
+    (setq doom-modeline-support-imenu t)
+    (set-face-attribute 'mode-line nil
+                    :background "#282828"
+                    :foreground "white"
+                    :box '(:line-width 1 :color "#bccc9a")
+                    :overline nil
+                    :underline nil)
+    (set-face-attribute 'mode-line-inactive nil
+                    :background "#000000"
+                    :foreground "white"
+                    :box '(:line-width 1 :color "#b97a95")
+                    :overline nil
+                    :underline nil)
+
+    (setq doom-modeline-icon t)
+    (setq doom-modeline-major-mode-icon t)
+    (setq doom-modeline-workspace-name t))
 #+end_src
 
 ** Fonts
@@ -350,16 +421,9 @@ Highlighting numbers makes them more visible in code
 * Shell Improvements
 
 #+begin_src emacs-lisp
-    ;;    (use-package shell-pop
-    ;;      :ensure t
-    ;;      :config
-    ;;      (require 'shell-pop)
-    ;;      (global-set-key (kbd "C-c SPC") 'shell-pop)
-    ;;      (shell-pop-set-internal-mode-shell "eshell"))
-  (add-to-list 'load-path (expand-file-name "shell-pop.el" user-emacs-directory))
-  (require 'shell-pop)
-  (shell-pop-set-internal-mode-shell "eshell")
-  (global-set-key (kbd "C-c SPC") 'shell-pop)
+  (load (expand-file-name "pop-eshell.el" user-emacs-directory))
+  (pop-eshell-mode 1)
+  (global-set-key (kbd "C-c SPC") 'eshell-pop-toggle)
 #+end_src
 
 * Org mode

@@ -10,3 +10,15 @@ history
 *.eld
 backups/
 #*
+*.dat
+auto-save-list/
+configuration.el
+backups/
+.cache/
+eln-cache/
+elpa/
+package-quickstart.*
+projectile-bookmarks.eld
+recentf
+transient/
+tutorial/
