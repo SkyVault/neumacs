@@ -564,6 +564,14 @@ Making Org files pretty
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+end_src
 
+Making emacs a good writing program
+
+#+begin_src emacs-lisp
+      (use-package olivetti
+      :ensure t
+      :config)
+#+end_src
+
 * Magit
 
 I should work on configuring this more, but for now I just use the
@@ -611,4 +619,11 @@ helps with that.
     (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
     (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
     (add-to-list 'interpreter-mode-alist '("lua" . lua-mode)))
+#+end_src
+
+** Haskell
+
+#+begin_src emacs-lisp
+  (use-package haskell-mode
+    :ensure t)
 #+end_src
