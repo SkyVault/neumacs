@@ -262,6 +262,18 @@ Vertico is a nice utility that adds vertical menus like helm, but is very light
      )
 #+end_src
 
+** Hinting and Help
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (setq which-key-idle-delay 0.75)
+    (setq which-key-idle-secondary-delay 0.1)
+    (setq which-key-popup-type 'side-window)
+    (which-key-mode))
+#+end_src
+
 ** Window management
 
 #+begin_src emacs-lisp
