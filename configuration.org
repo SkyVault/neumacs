@@ -81,12 +81,22 @@ Misq changes
 
 Global search
 
+
+
 #+begin_src emacs-lisp
-  (use-package ag
+
+  ;; (use-package ag
+  ;;  :ensure t
+  ;;  :config
+  ;;  )
+
+  (use-package deadgrep
     :ensure t
     :config
-    (global-set-key (kbd "C-x /") 'ag))
+    (global-set-key (kbd "C-x /") #'deadgrep))
 #+end_src
+
+
 
 Enabling recent files
 
@@ -308,6 +318,8 @@ Vertico is a nice utility that adds vertical menus like helm, but is very light
     (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
     (ad-activate 'isearch-search)))
 #+end_src
+
+
 
 ** Splashscreen
 
