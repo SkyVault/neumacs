@@ -173,7 +173,7 @@ For this I like to use projectile
     :config
     (projectile-mode +1)
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    (define-key projectile-mode-map (kbd "C-x p") 'projectile-file))
+    (define-key projectile-mode-map (kbd "C-x p") 'projectile-find-file))
 #+end_src
 
 I like having an overview of the current directory on the side, my favorite package for this
@@ -206,7 +206,7 @@ is treemacs
 	    treemacs-is-never-other-window           nil
 	    treemacs-max-git-entries                 5000
 	    treemacs-missing-project-action          'ask
-	    treemacs-forward-on-expand          nil
+	    treemacs-move-forward-on-expand          nil
 	    treemacs-no-png-images                   nil
 	    treemacs-no-delete-other-windows         t
 	    treemacs-project-follow-cleanup          nil
@@ -419,9 +419,9 @@ don't really need a lot of the packages that I use for development when just wri
 (defun switch-to-sly-repl ()
   "Switches to the active sly repl in a dedicated window"
   (interactive)
-  (switch-to-buffer-other-window "*sly-mrepl for sbcl*"))
+  (switch-to-buffer-other-window "*sly-mrepl for sbcl*"))o
 
-(global-set-key (kbd "C-c r") 'switch-to-sly-repl)
+(global-set-key (kbd "C-c r") 'switch-to-buffer-in-)
 
 #+end_src
 
@@ -794,17 +794,13 @@ helps with that.
 ** Common Lisp
 
 #+begin_src emacs-lisp
+
+
   (use-package sly
     :ensure t
+    :init
+    ;; Find Sly buffer
+    (global-set-key (kbd "C-c r") )
     :config
     (setq inferior-lisp-program "/usr/bin/sbcl"))
 #+end_src
-
-#+begin_src emacs-lisp
-(use-package smartparens
-  :ensure t
-  :config
-  (require 'smartparens-config))
-#+end_src
-
-#+RESULTS:

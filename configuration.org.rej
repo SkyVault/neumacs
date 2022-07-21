@@ -1,0 +1,31 @@
+diff a/configuration.org b/configuration.org	(rejected hunks)
+@@ -47,7 +47,7 @@ Hide menus, tools, scroll bars and fringes
+   ;; No scroll bar, always full screen
+   (add-to-list 'default-frame-alist
+ 	       '(vertical-scroll-bars . nil))
+-  (add-to-list 'default-frame-alist '(fullscreen . maximized))
++;;  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+ #+end_src
+ 
+ Show matching parens
+@@ -595,12 +595,14 @@ helps with that.
+     :config
+     (global-set-key (kbd "C-c e") 'elfeed)
+     (setq elfeed-feeds
+-	  '("https://lukesmith.xyz/rss.xml"
+-	    "https://notrelated.libsyn.com/rss"
+-	    "https://hnrss.org/frontpage"
+-	    "https://christine.website/blog.rss"
+-	    "https://www.reuters.com/news/archive/domesticNews"
+-	    "https://fabiensanglard.net/rss.xml"))
++          ;; TODO: Load these from a separate file so we can use tools to manage them
++          '("https://lukesmith.xyz/rss.xml"
++            "https://www.omglinux.com/feed/"
++            "https://notrelated.libsyn.com/rss"
++            "https://hnrss.org/frontpage"
++            "https://christine.website/blog.rss"
++            "https://www.reuters.com/news/archive/domesticNews"
++            "https://fabiensanglard.net/rss.xml"))
+     (elfeed-update)
+     ;; Change max image size
+     (require 'shr)
